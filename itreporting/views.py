@@ -6,7 +6,7 @@ from .models import Issue
 
 # Create your views here.
 def home(request):
-    return render(request, 'itreporting/home.html', {'title': 'Welcome'})
+    return render(request, 'itreporting/home.html', {'title': 'Welcome Page'})
 
 def about(request):
     return render(request, 'itreporting/about.html', {'title': 'About Us'})

@@ -19,7 +19,7 @@ def register(request):
             return redirect('itreporting-home')
     else:
         form = UserRegisterForm()
-        return render(request, 'users/register.html', {'form': form})
+        return render(request, 'users/register.html', {'form': form, 'title': 'Register'})
 
 @login_required
 def profile(request):
@@ -31,15 +31,14 @@ def profile(request):
             u_form.save()
             p_form.save()
             messages.success(request, f'Your account has been successfully updated')
-            
+
         return redirect('profile')
     else:
         u_form = UserUpdateForm(instance = request.user)
         p_form = ProfileUpdateForm(instance = request.user.profile)
+        context = {
+            'u_form': u_form,
+            'p_form': p_form
+        }
 
-    context = {
-        'u_form': u_form,
-        'p_form': p_form
-    }
-
-    return render(request, 'users/profile.html', context)
+        return render(request, 'users/profile.html', context)

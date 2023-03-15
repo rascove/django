@@ -1,4 +1,5 @@
 {% extends "itreporting/base.html" %}
+
 {% block content %}<h1 class="mb-3">Issues Reported by {{view.kwargs.username}} ({{page_obj.paginator.count}})</h1>
 {% for issue in issues %}
 <article class="media content-section">
