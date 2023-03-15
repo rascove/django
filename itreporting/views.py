@@ -7,7 +7,7 @@ import os
 
 # Create your views here.
 def home(request):
-    return render(request, 'itreporting/home.html', {'title': 'Welcome Page', 'secretkey': os.environ['SECRET_KEY']})
+    return render(request, 'itreporting/home.html', {'title': 'Welcome Page'})
 
 def about(request):
     return render(request, 'itreporting/about.html', {'title': 'About Us'})
