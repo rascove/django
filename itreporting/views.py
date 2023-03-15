@@ -3,10 +3,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Issue
+import os
 
 # Create your views here.
 def home(request):
-    return render(request, 'itreporting/home.html', {'title': 'Welcome Page'})
+    return render(request, 'itreporting/home.html', {'title': 'Welcome Page', 'secretkey': os.environ['SECRET_KEY']})
 
 def about(request):
     return render(request, 'itreporting/about.html', {'title': 'About Us'})
