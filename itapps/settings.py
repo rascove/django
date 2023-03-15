@@ -24,11 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'abc123')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = 'WEBSITE_HOSTNAME' not in os.environ
 
-ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else ['localhost']
-
-if 'WEBSITE_HOSTNAME' in os.environ:
+if DEBUG:
+    ALLOWED_HOSTS = []
+else:
+    ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']]
     CSRF_TRUSTED_ORIGINS = ['https://' + os.environ['WEBSITE_HOSTNAME']]
 
 # Application definition
@@ -127,7 +128,7 @@ STATIC_ROOT = BASE_DIR / 'static'
 
 STATIC_URL = 'static/'
 
-STATICFILES_STORAGE = ('whitenoise.storage.CompressedManifestStaticFilesStorage')
+STATICFILES_STORAGE = ('whitenoise.storage.CompressedStaticFilesStorage')
 
 MEDIA_ROOT = BASE_DIR / 'media'
 
